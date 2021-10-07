@@ -61,10 +61,10 @@ const ModalPosters = ({title, isModalVisible, cancel ,item, extraInfo, filter}) 
               {item.overview}
             </h2>
             
-            {(item.media_type === 'tv' || filter === 'tvseries' ) && (item.media_type !== ('person' || 'movie')) && <h3 style={{fontWeight:100, alignSelf:'flex-end'}}>Seasons: {info?.number_of_seasons}</h3>}
-            {item.media_type !== 'person' && filter !== 'artist' && <h3 style={{fontWeight:100, alignSelf:'flex-end'}}> Release Date: {item.first_air_date || item.release_date}</h3>}
-            {(item.media_type === 'person' || filter === 'artist') && <h3 style={{fontWeight:100, alignSelf:'flex-end'}}>Age: {getAge(info?.birthday)}</h3>}
-            {(item.media_type === 'person' || filter === 'artist') && <h3 style={{fontWeight:100, alignSelf:'flex-end'}}>Last Movie: {lastMovie?.original_title}</h3>}
+            {(item.media_type === 'tv' || filter === 'tvseries' ) && (item.media_type !== ('person' || 'movie')) && <h3 style={{fontWeight:100, alignSelf:'flex-end'}}><strong>Seasons:</strong> {info?.number_of_seasons}</h3>}
+            {item.media_type !== 'person' && filter !== 'artist' && <h3 style={{fontWeight:100, alignSelf:'flex-end'}}><strong>Release Date:</strong> {item.first_air_date || item.release_date}</h3>}
+            {(item.media_type === 'person' || filter === 'artist') && <h3 style={{fontWeight:100, alignSelf:'flex-end'}}><strong>Age:</strong> {getAge(info?.birthday)}</h3>}
+            {(item.media_type === 'person' || filter === 'artist') && <h3 style={{fontWeight:100, alignSelf:'flex-end'}}><strong>Last Movie:</strong> {lastMovie?.original_title}</h3>}
           </div>
         </div>
       </div>
