@@ -34,27 +34,48 @@ const Home = () => {
   },[])
 
   const handleArtist = useCallback(async(e, page = 1)=>{
-    const {data} = await api.get(`search/person?API_KEY&query=${e}${'&page='+page}`)        
+    if(e){
+      const {data} = await api.get(`search/person?API_KEY&query=${e}${'&page='+page}`)        
       setTotalPages(data.total_pages)
       setPage(page)
       // setTotalResults(data.total_results)
       setList(data.results)      
+    }else{
+      const {data} = await api.get(`person/popular?API_KEY${'&page='+page}`)        
+      setTotalPages(data.total_pages)
+      setPage(page)      
+      setList(data.results)
+    }
   },[])
 
   const handleTv = useCallback(async(e, page = 1)=>{
-    const {data} = await api.get(`search/tv?API_KEY&query=${e}${'&page='+page}`)        
+    if(e){      
+      const {data} = await api.get(`search/tv?API_KEY&query=${e}${'&page='+page}`)        
       setTotalPages(data.total_pages)
       setPage(page)
       // setTotalResults(data.total_results)
       setList(data.results)      
+    }else{
+      const {data} = await api.get(`tv/popular?API_KEY${'&page='+page}`)        
+      setTotalPages(data.total_pages)
+      setPage(page)      
+      setList(data.results)
+    }
   },[])
 
-  const handleMovie = useCallback(async(e, page = 1)=>{
-    const {data} = await api.get(`search/movie?API_KEY&query=${e}${'&page='+page}`)        
+  const handleMovie = useCallback(async(e, page = 1)=>{    
+    if(e){
+      const {data} = await api.get(`search/movie?API_KEY&query=${e}${'&page='+page}`)        
       setTotalPages(data.total_pages)
       // setTotalResults(data.total_results)
       setPage(page)
-      setList(data.results)      
+      setList(data.results)
+    }else{
+      const {data} = await api.get(`movie/popular?API_KEY${'&page='+page}`)        
+      setTotalPages(data.total_pages)
+      setPage(page)      
+      setList(data.results)
+    }
   },[])
   
   useEffect(()=>{
@@ -63,7 +84,9 @@ const Home = () => {
 
   const handleFilter = (query, e, filter = sfilter)=> {
     console.log(query, filter, e)
-    if(query==='') return handlePopular(e)
+    // if(query===''){ 
+    //   return handlePopular(e)
+    // }
     switch(filter){
       case 'artist':
         return handleArtist(query, e)
