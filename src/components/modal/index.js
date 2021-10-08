@@ -45,7 +45,7 @@ const ModalPosters = ({title, isModalVisible, cancel ,item, extraInfo, filter}) 
 },[isModalVisible, item, filter])
 
   return (
-    <Modal title={title} visible={isModalVisible} onOk={handleCancel} onCancel={handleCancel}>
+    <Modal title={title} visible={isModalVisible}  onCancel={handleCancel} footer={null} >
       <div style={{display:'flex', flex:1, flexDirection:'row' }}>
         <img 
         style={{borderTopRightRadius:10,

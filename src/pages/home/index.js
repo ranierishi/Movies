@@ -26,11 +26,13 @@ const Home = () => {
   },[])
   
   const handleMulti = useCallback(async(e, page = 1)=>{
+    if(e){
     const {data} = await api.get(`search/multi?API_KEY&query=${e}${'&page='+page}`)        
       setTotalPages(data.total_pages)
       setPage(page)
       // setTotalResults(data.total_results)
-      setList(data.results)      
+      setList(data.results)   
+    }   
   },[])
 
   const handleArtist = useCallback(async(e, page = 1)=>{
@@ -115,7 +117,7 @@ const Home = () => {
       <List lista={list} filter={sfilter}/>
 
       <div style={{display:'flex', flex:1, justifyContent:'flex-end'}}>
-        <Pagination defaultCurrent={1} current={page} onChange={(e)=>handleFilter(query ,e)} total={totalPages} />
+        <Pagination defaultCurrent={1} current={page} onChange={(e)=>handleFilter(query ,e)} total={totalPages} showSizeChanger={false} />
       </div>
       </Container>
     </ContentWrapper>
